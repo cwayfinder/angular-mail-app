@@ -8,8 +8,6 @@ angular.module('app').component('mailApp', {
   controller: function($scope, MailService) {
     this.refresh = () => {
       if (this.user) {
-        console.debug(`load '${this.selectedFolder}' folder for ${this.user.fullName}`);
-
         this.mails = [];
 
         let methodName = 'get' + capitalize(this.selectedFolder);
