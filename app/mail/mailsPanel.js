@@ -10,10 +10,12 @@ angular.module('app').component('mailsPanel', {
     onCancelComposing: '&',
     onRefresh: '&'
   },
-  controller: function() {
+  controller: function($scope) {
     this.selectMail = mail => this.selectedMail = mail;
     this.clearMailSelection = () => this.selectedMail = null;
 
     this.create = (mail) => this.onMailComposed({mail: mail});
+
+    $scope.$on('select-folder', folder => this.clearMailSelection());
   }
 });

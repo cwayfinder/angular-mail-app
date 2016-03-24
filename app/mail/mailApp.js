@@ -19,7 +19,10 @@ angular.module('app').component('mailApp', {
 
     this.selectFolder = folder => {
       this.selectedFolder = folder;
+      this.composing = false;
       this.refresh();
+
+      $scope.$broadcast('select-folder', folder);
     };
 
     this.startComposing = () => this.composing = true;
