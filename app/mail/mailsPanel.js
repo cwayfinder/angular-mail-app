@@ -7,7 +7,8 @@ angular.module('app').component('mailsPanel', {
     folder: '<',
     composing: '<',
     onMailComposed: '&',
-    onCancelComposing: '&'
+    onCancelComposing: '&',
+    onRefresh: '&'
   },
   controller: function() {
     this.selectMail = mail => this.selectedMail = mail;

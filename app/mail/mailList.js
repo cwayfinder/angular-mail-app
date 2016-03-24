@@ -5,7 +5,8 @@ angular.module('app').component('mailList', {
   bindings: {
     folder: '<',
     mails: '<',
-    onSelect: '&'
+    onSelect: '&',
+    onRefresh: '&'
   },
   controller: function($scope, MailService) {
     this.collocutor = mail => this.folder === 'sent' ? mail.to : mail.sender.name;

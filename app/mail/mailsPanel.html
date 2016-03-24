@@ -1,6 +1,7 @@
 <mail-list class="" ng-if="!$ctrl.selectedMail && !$ctrl.composing"
            mails="$ctrl.mails"
            folder="$ctrl.folder"
+           on-refresh="$ctrl.onRefresh()"
            on-select="$ctrl.selectMail(mail)"></mail-list>
 
 <mail-panel class="" ng-if="$ctrl.selectedMail && !$ctrl.composing"
