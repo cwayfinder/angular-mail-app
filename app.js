@@ -48,6 +48,13 @@ var app = angular.module('app', [])
               return mail;
             });
       };
+
+      this.remove = function(item) {
+        console.debug('delete email', item);
+
+        return $http.delete(baseUri + item.id + '.json')
+          .then(response => response.data);
+      };
     }).service('ContactsService', function($http) {
       const baseUri = 'https://jsru-ng-mail-app.firebaseio.com/contacts/';
 

@@ -16,6 +16,11 @@ angular.module('app').component('mailsPanel', {
 
     this.create = (mail) => this.onMailComposed({mail: mail});
 
+    this.onRemove = () => {
+      this.clearMailSelection();
+      this.onRefresh();
+    };
+
     $scope.$on('select-folder', folder => this.clearMailSelection());
   }
 });
