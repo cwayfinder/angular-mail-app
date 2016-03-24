@@ -1,0 +1,22 @@
+body {
+    padding-top: 70px;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.horizontal-padding {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.no-horizontal-border {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+}
+
+.bold {
+    font-weight: bold;
+}

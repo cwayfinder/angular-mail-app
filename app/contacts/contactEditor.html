@@ -1,0 +1,38 @@
+<div class="row well well-sm">
+  <div class="btn-toolbar">
+    <button type="button" class="btn btn-default" ng-click="$ctrl.onCancel()">
+      <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back
+    </button>
+    <button type="button" class="btn btn-default" ng-click="$ctrl.fakeContact()">Fake Contact</button>
+  </div>
+</div>
+
+<form>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" ng-model="$ctrl.contact.name" placeholder="Name" required>
+  </div>
+
+  <div class="form-group">
+    <label for="avatar">Avatar Url</label>
+    <input type="text" class="form-control" id="avatar" ng-model="$ctrl.contact.avatarUrl" placeholder="http://">
+  </div>
+
+  <div class="form-group">
+    <label for="to">Email</label>
+    <input type="email" class="form-control" id="to" ng-model="$ctrl.contact.email" placeholder="username@example.com">
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="text" class="form-control" id="phone" ng-model="$ctrl.contact.phone">
+  </div>
+
+  <div class="form-group">
+    <label for="company">Company</label>
+    <input type="text" class="form-control" id="company" ng-model="$ctrl.contact.company">
+  </div>
+
+  <button type="button" class="btn btn-default" ng-click="$ctrl.onCancel()">Cancel</button>
+  <button type="submit" class="btn btn-primary" ng-click="$ctrl.onSubmit({contact: $ctrl.contact})">Submit</button>
+</form>

@@ -1,0 +1,14 @@
+<div class="row well well-sm">
+  <div class="btn-toolbar">
+    <button type="button" class="btn btn-default" ng-click="$ctrl.onBack()">
+      <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+    </button>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{$ctrl.mail.subject}}</h3>
+  </div>
+  <div class="panel-body">{{$ctrl.mail.text}}</div>
+</div>

@@ -1,0 +1,22 @@
+<div class="row well well-sm horizontal-padding no-horizontal-border">
+  <div class="btn-toolbar">
+    <app-dropdown></app-dropdown>
+  </div>
+</div>
+
+<ul class="nav nav-sidebar horizontal-padding">
+  <li class="active">
+    <a href="#">
+      <span>All contacts</span>
+      <span>&nbsp;</span>
+      <span class="badge">{{$ctrl.contacts.length}}</span>
+    </a>
+  </li>
+  <li class="disabled">
+    <a href="#">
+      <span>Favorited</span>
+      <span>&nbsp;</span>
+      <span class="badge">0</span>
+    </a>
+  </li>
+</ul>

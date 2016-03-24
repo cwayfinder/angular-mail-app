@@ -1,0 +1,11 @@
+<mails-sidebar class="col-sm-3 col-md-2 sidebar no-padding"
+         selected-folder="$ctrl.selectedFolder"
+         on-folder-select="$ctrl.selectFolder(folder)"
+         on-compose-click="$ctrl.startComposing()"></mails-sidebar>
+
+<mails-panel class="col-sm-9 col-md-10 no-padding"
+             mails="$ctrl.mails"
+             folder="$ctrl.selectedFolder"
+             composing="$ctrl.composing"
+             on-mail-composed="$ctrl.sendMail(mail)"
+             on-cancel-composing="$ctrl.cancelComposing()"></mails-panel>

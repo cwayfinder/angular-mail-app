@@ -1,0 +1,12 @@
+<mail-list class="" ng-if="!$ctrl.selectedMail && !$ctrl.composing"
+           mails="$ctrl.mails"
+           folder="$ctrl.folder"
+           on-select="$ctrl.selectMail(mail)"></mail-list>
+
+<mail-panel class="" ng-if="$ctrl.selectedMail && !$ctrl.composing"
+            mail="$ctrl.selectedMail"
+            on-back="$ctrl.clearMailSelection()"></mail-panel>
+
+<mail-editor ng-if="$ctrl.composing"
+             on-create="$ctrl.create(mail)"
+             on-cancel="$ctrl.onCancelComposing()"></mail-editor>

@@ -1,0 +1,23 @@
+<div class="row well well-sm horizontal-padding no-horizontal-border">
+  <div class="btn-toolbar">
+    <app-dropdown></app-dropdown>
+  </div>
+</div>
+
+<ul class="nav nav-sidebar horizontal-padding">
+  <li>
+    <button type="button" class="btn btn-primary text-uppercase"
+            ng-click="$ctrl.onComposeClick()">Compose</button>
+  </li>
+  <li role="separator">&nbsp;</li>
+  <li class="active">
+    <a href="#" ng-click="$ctrl.selectInbox()">
+      <span ng-class="{bold: $ctrl.selectedFolder == 'inbox'}">Inbox</span>
+    </a>
+  </li>
+  <li class="">
+    <a href="#" ng-click="$ctrl.selectSent()">
+      <span ng-class="{bold: $ctrl.selectedFolder == 'sent'}">Sent Mails</span>
+    </a>
+  </li>
+</ul>
