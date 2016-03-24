@@ -3,6 +3,7 @@
     <button type="button" class="btn btn-default" ng-click="$ctrl.onCancel()">
       <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back
     </button>
+    <button type="button" class="btn btn-primary" ng-click="$ctrl.fakeEmail()">Generate Fake</button>
   </div>
 </div>
 
@@ -16,7 +17,7 @@
     <input type="text" class="form-control" id="subject" ng-model="$ctrl.mail.subject" placeholder="Subject">
   </div>
   <div class="form-group">
-    <textarea class="form-control" id="text" ng-model="$ctrl.mail.body" placeholder="Mail text" rows="10"></textarea>
+    <textarea class="form-control" id="text" ng-model="$ctrl.mail.text" placeholder="Mail text" rows="10"></textarea>
   </div>
   <button type="button" class="btn btn-default" ng-click="$ctrl.onCancel()">Cancel</button>
   <button type="submit" class="btn btn-primary" ng-click="$ctrl.submit()">Submit</button>
