@@ -1,7 +1,7 @@
-<top-bar users="$ctrl.users"
-         current-user="$ctrl.currentUser"
-         on-user-select="$ctrl.selectUser(user)"></top-bar>
+<top-bar users="$ctrl.users" current-user="$ctrl.currentUser"></top-bar>
 
-<mail-app user="$ctrl.currentUser" ng-if="$ctrl.currentApp == 'mail'"></mail-app>
+<ui-view></ui-view>
 
-<contacts-app user="$ctrl.currentUser" ng-if="$ctrl.currentApp == 'contacts'"></contacts-app>
+
+
+

@@ -6,9 +6,10 @@ function capitalize(string) {
 
 function normalizeToArray(object) {
   if (!object) return [];
-  return Object.keys(object).map(key => {
-    let normalizedObject = object[key];
-    normalizedObject.id = key;
-    return normalizedObject;
-  })
+  return Object.keys(object).map(key => normalizeObject(object[key], key));
+}
+
+function normalizeObject(object, key) {
+  object.id = key;
+  return object;
 }

@@ -6,17 +6,16 @@
 
 <ul class="nav nav-sidebar horizontal-padding">
   <li>
-    <button type="button" class="btn btn-primary text-uppercase"
-            ng-click="$ctrl.onComposeClick()">Compose</button>
+    <button type="button" class="btn btn-primary text-uppercase" ui-sref="^.compose">Compose</button>
   </li>
   <li role="separator">&nbsp;</li>
   <li class="active">
-    <a href="#" ng-click="$ctrl.selectInbox()">
+    <a ui-sref=".folder({folder: 'inbox'})">
       <span ng-class="{bold: $ctrl.selectedFolder == 'inbox'}">Inbox</span>
     </a>
   </li>
-  <li class="">
-    <a href="#" ng-click="$ctrl.selectSent()">
+  <li>
+    <a ui-sref=".folder({folder: 'sent'})">
       <span ng-class="{bold: $ctrl.selectedFolder == 'sent'}">Sent Mails</span>
     </a>
   </li>

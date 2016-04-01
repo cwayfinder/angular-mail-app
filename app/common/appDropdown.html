@@ -1,11 +1,11 @@
 <div class="dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    <span>{{$ctrl.currentApp == 'contacts' ? 'Contacts' : 'Mail'}}</span>
+    <span>{{$ctrl.currentApp == 'contacts' ? 'Contacts' : 'Mailbox'}}</span>
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#" ng-click="$ctrl.selectApp('mail')">Mail</a></li>
-    <li><a href="#" ng-click="$ctrl.selectApp('contacts')">Contacts</a></li>
+    <li><a ui-sref="^.mailbox.folder({folder: 'inbox'})">Mailbox</a></li>
+    <li><a ui-sref="^.contacts">Contacts</a></li>
   </ul>
 </div>

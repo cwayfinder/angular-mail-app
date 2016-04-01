@@ -3,12 +3,8 @@
 angular.module('app').component('mailsSidebar', {
   templateUrl: 'app/mail/mailsSidebar.html',
   bindings: {
-    selectedFolder: '<',
-    onFolderSelect: '&',
-    onComposeClick: '&'
+    selectedFolder: '<'
   },
   controller: function() {
-    this.selectSent = () => this.onFolderSelect({folder: 'sent'});
-    this.selectInbox = () => this.onFolderSelect({folder: 'inbox'});
   }
 });

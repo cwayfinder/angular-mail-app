@@ -2,15 +2,14 @@
 
 angular.module('app').component('mailEditor', {
   templateUrl: 'app/mail/mailEditor.html',
-  bindings: {
-    composing: '<',
-    onCreate: '&',
-    onCancel: '&'
-  },
-  controller: function(ContactsService) {
+  controller: function(UserService, MailService, ContactsService, $state, $window) {
     this.mail = {};
 
-    this.submit = () => this.onCreate({mail: this.mail});
+    this.submit = () => {
+      MailService.sendMail(UserService.getCurrentUser(), this.mail).then(() => {
+        $state.go('^.folder', {folder: 'sent'});
+      });
+    };
 
     this.fakeEmail = () => {
       ContactsService.generateFake().then(fake => {
@@ -18,6 +17,9 @@ angular.module('app').component('mailEditor', {
         this.mail.subject = faker.directive('lorem')('%w', 3, 3);
         this.mail.text = faker.directive('lorem')('%p', 3, 3);
       });
-    }
+    };
+
+    // TODO: use a smarter approach instead of $window.history.back()
+    this.back = () => $window.history.back();
   }
 });

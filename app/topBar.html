@@ -16,7 +16,7 @@
         </a>
         <ul class="dropdown-menu">
           <li ng-repeat="user in $ctrl.users">
-            <a href="#" ng-click="$ctrl.onUserSelect({user:user})">
+            <a href="#" ng-click="$ctrl.selectUser(user)">
               <img class="img-circle" alt="avatar" ng-src="{{user.avatarUrl}}" style="width: 32px; height: 32px;">
               <span>{{user.fullName}}</span>
             </a>
