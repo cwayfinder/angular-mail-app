@@ -17,22 +17,22 @@
   <script src="app.js"></script>
 
   <script src="app/routes.js"></script>
-
   <script src="app/UserService.js"></script>
-  <script src="app/ContactsService.js"></script>
-  <script src="app/MailService.js"></script>
-
   <script src="app/appViewport.js"></script>
   <script src="app/topBar.js"></script>
 
   <script src="app/common/appDropdown.js"></script>
 
+  <script src="app/mail/routes.js"></script>
+  <script src="app/mail/MailService.js"></script>
   <script src="app/mail/mailApp.js"></script>
   <script src="app/mail/mailList.js"></script>
   <script src="app/mail/mailPanel.js"></script>
   <script src="app/mail/mailEditor.js"></script>
   <script src="app/mail/mailsSidebar.js"></script>
 
+  <script src="app/contacts/routes.js"></script>
+  <script src="app/contacts/ContactsService.js"></script>
   <script src="app/contacts/contactsApp.js"></script>
   <script src="app/contacts/contactList.js"></script>
   <script src="app/contacts/contactEditor.js"></script>
@@ -40,10 +40,8 @@
 </head>
 
 <body class="container-fluid">
+  <ui-view></ui-view>
 
-<ui-view></ui-view>
-
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 </html>
