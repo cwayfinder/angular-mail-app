@@ -10,12 +10,12 @@
   </li>
   <li role="separator">&nbsp;</li>
   <li class="active">
-    <a ui-sref=".folder({folder: 'inbox'})">
+    <a ui-sref="^.folder({folder: 'inbox'})">
       <span ng-class="{bold: $ctrl.selectedFolder == 'inbox'}">Inbox</span>
     </a>
   </li>
   <li>
-    <a ui-sref=".folder({folder: 'sent'})">
+    <a ui-sref="^.folder({folder: 'sent'})">
       <span ng-class="{bold: $ctrl.selectedFolder == 'sent'}">Sent Mails</span>
     </a>
   </li>
