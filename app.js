@@ -8,12 +8,12 @@ var app = angular.module('app', ['ui.router'])
   })
   .config(function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/aaa/mailbox/folder/inbox')
+    $urlRouterProvider.otherwise('/mailbox/folder/inbox')
 
     $stateProvider
       .state('app', {
         abstract: true,
-        url: '/aaa',
+        url: '',
         template: `<app-viewport users="$ctrl.users" current-user="$ctrl.currentUser"></app-viewport>`,
         resolve:  {
           users: function(UserService) {
