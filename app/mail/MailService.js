@@ -21,20 +21,20 @@ angular.module('app')
     };
 
     this.save = function(mail) {
-      return this._prepareMail(mail)
-        .then(this._doSaveMail)
-        .then(ref => this._createPreview(ref.key(), mail, 'sent'));
+      return _prepareMail(mail)
+        .then(_doSaveMail)
+        .then(ref => _createPreview(ref.key(), mail, 'sent'));
     };
 
     this.moveToTrash = function(mail) {
-      return this._createPreview(mail.$id, mail, 'trash')
-        .then(ref => this._removePreview(ref.key(), 'sent', 'inbox'));
+      return _createPreview(mail.$id, mail, 'trash')
+        .then(ref => _removePreview(ref.key(), 'sent', 'inbox'));
     };
 
 
     // Private methods
 
-    this._prepareMail = function(mail) {
+    function _prepareMail (mail) {
       mail.timestamp = Firebase.ServerValue.TIMESTAMP;
 
       return $firebaseObject(MailRefs.user()).$loaded()
@@ -42,13 +42,13 @@ angular.module('app')
           mail.sender = {id: user.$id, name: user.name};
           return mail;
         })
-    };
+    }
 
-    this._doSaveMail = function(mail) {
+    function _doSaveMail(mail) {
       return $firebaseArray(MailRefs.mails()).$add(mail);
-    };
+    }
 
-    this._createPreview = function(key, data, folder) {
+    function _createPreview(key, data, folder) {
       var mailPreview = $firebaseObject(MailRefs.folder(folder).child(key));
       mailPreview.subject = data.subject;
       mailPreview.sender = data.sender;
@@ -56,9 +56,9 @@ angular.module('app')
       mailPreview.timestamp = data.timestamp;
 
       return mailPreview.$save();
-    };
+    }
 
-    this._removePreview = function(key, ...folders) {
+    function _removePreview(key, ...folders) {
       folders.forEach(f => $firebaseObject(MailRefs.folder(f).child(key)).$remove());
-    };
+    }
   });
