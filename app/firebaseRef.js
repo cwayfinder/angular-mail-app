@@ -3,7 +3,10 @@ angular.module('app')
   .service('rootRef', ['FirebaseUrl', Firebase])
   .factory('firebaseRef', function(rootRef, authService) {
     return {
-      //getMailsRef: () => rootRef.child('mails').child(authService.$getAuth().uid)
-      getMailsRef: () => rootRef.child('mails')
+      getFolderRef: folderName => rootRef.child('folders').child(authService.$getAuth().uid).child(folderName),
+      getMailsRef: () => rootRef.child('mails').child(authService.$getAuth().uid),
+      getMailRef: mailId => rootRef.child('mails').child(authService.$getAuth().uid).child(mailId),
+
+      getUserRef: () => rootRef.child('users').child(authService.$getAuth().uid)
     }
   });

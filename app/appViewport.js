@@ -3,7 +3,6 @@
 angular.module('app').component('appViewport', {
   templateUrl: 'app/appViewport.html',
   bindings: {
-    users: '<',
     currentUser: '<'
   }
 });

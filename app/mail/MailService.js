@@ -1,48 +1,53 @@
-angular.module('app').service('MailService', function($http) {
-  const baseUri = 'https://jsru-ng-mail-app.firebaseio.com/mails/';
+angular.module('app').service('MailService', function(Firebase, $firebaseArray, $firebaseObject, firebaseRef) {
 
-  this.getSent = function(user) {
-    console.debug(`load sent emails for ${user.fullName}`);
-
-    return $http.get(baseUri + '.json')
-      .then(response => normalizeToArray(response.data))
-      .then(mails => mails.filter(mail => mail.sender.email === user.email))
-      .catch(error => console.error(error));
+  this.get = function(key) {
+    return $firebaseObject(firebaseRef.getMailRef(key)).$loaded();
   };
 
-  this.getInbox = function(user) {
-    console.debug(`load inbox emails for ${user.fullName}`);
-
-    return $http.get(baseUri + '.json')
-      .then(response => normalizeToArray(response.data))
-      .then(mails => mails.filter(mail => mail.to === user.email))
-      .catch(error => console.error(error));
+  this.list = function(folderName) {
+    return $firebaseArray(firebaseRef.getFolderRef(folderName)).$loaded();
   };
 
-  this.getMail = function(mailId, user) {
-    return $http.get(baseUri + mailId + '.json').then(response => normalizeObject(response.data, mailId));
+  this.save = function(mail) {
+    return this._prepareMail(mail)
+      .then(this._doSaveMail)
+      .then(ref => this._createPreview(ref.key(), mail, 'sent'));
   };
 
-  this.sendMail = function(user, mail) {
-    mail.timestamp = Date.now();
-    mail.sender = {
-      name: user.fullName,
-      email: user.email
-    };
+  this.moveToTrash = function(mail) {
+    return this._createPreview(mail.$id, mail, 'trash')
+      .then(ref => this._removePreview(ref.key(), 'sent', 'inbox'));
+  };
 
-    console.debug(`send email to ${mail.to}`, mail);
 
-    return $http.post(baseUri + '.json', mail)
-      .then(response => {
-        mail.id = response.data.name;
+
+  // Private methods
+
+  this._prepareMail = function(mail) {
+    mail.timestamp = Firebase.ServerValue.TIMESTAMP;
+
+    return $firebaseObject(firebaseRef.getUserRef()).$loaded()
+      .then(user => {
+        mail.sender = {id: user.$id, name: user.name};
         return mail;
-      });
+      })
   };
 
-  this.remove = function(item) {
-    console.debug('delete email', item);
+  this._doSaveMail = function(mail) {
+    return $firebaseArray(firebaseRef.getMailsRef()).$add(mail);
+  };
 
-    return $http.delete(baseUri + item.id + '.json')
-      .then(response => response.data);
+  this._createPreview = function(key, data, folder) {
+    var mailPreview = $firebaseObject(firebaseRef.getFolderRef(folder).child(key));
+    mailPreview.subject = data.subject;
+    mailPreview.sender = data.sender;
+    mailPreview.to = data.to;
+    mailPreview.timestamp = data.timestamp;
+
+    return mailPreview.$save();
+  };
+
+  this._removePreview = function(key, ...folders) {
+    folders.forEach(f => $firebaseObject(firebaseRef.getFolderRef(f).child(key)).$remove());
   };
 });

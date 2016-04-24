@@ -22,7 +22,9 @@ angular.module('app').service('ContactsService', function($http) {
 
   this.generateFake = function() {
     return $http.get('https://randomuser.me/api/')
-      .then(res => res.data.results[0].user);
+      .then(res => {
+        return res.data.results[0];
+      });
   };
 
   this.remove = function(item) {

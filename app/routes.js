@@ -1,11 +1,10 @@
 angular.module('app').run(function($rootScope, $location, $state) {
   $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
-    console.error(error);
     if (error === 'AUTH_REQUIRED') {
-      //$location.path('/login');
-      $state.go('app.login', {});
+      console.debug(error);
+      $state.go('login');
     } else {
-
+      console.error(error);
     }
   });
 });
@@ -19,42 +18,34 @@ angular.module('app').config(function($stateProvider) {
     .state('app', {
       abstract: true,
       url: '/app',
-      template: `<app-viewport users="$ctrl.users" current-user="$ctrl.currentUser"></app-viewport>`,
+      template: `<app-viewport current-user="$ctrl.currentUser"></app-viewport>`,
       resolve: {
-        users: function(UserService) {
-          return UserService.getAll();
-        },
-        currentUser: function(users, UserService) {
-          return UserService.getCurrentUser();
-        },
-        currentAuth: function(authService) {
-          return authService.$requireAuth();
+        currentUser: function(authService, $firebaseObject, firebaseRef) {
+          return authService.$requireAuth()
+            .then(() => $firebaseObject(firebaseRef.getUserRef()).$loaded());
         }
       },
-      controller: function($resolve, users, currentUser) {
-        this.users = users;
+      controller: function($resolve, currentUser) {
         this.currentUser = currentUser;
       },
       controllerAs: '$ctrl'
     })
     .state('login', {
       url: '/login',
-      template: '<login current-auth="$ctrl.currentAuth"></login>',
+      template: '<login></login>',
       resolve: {
         currentAuth: function(authService) {
-          return authService.$waitForAuth();
+          return authService.$waitForAuth()
+            .then(authData => {
+              if(authData) {
+                $location.path('/');
+              }
+            });
         }
-      },
-      controller: function(currentAuth) {
-        this.currentAuth = currentAuth;
-      },
-      controllerAs: '$ctrl'
+      }
     })
     .state('logout', {
       url: '/logout',
-      template: '<logout></logout>',
-      controller: function() {
-        console.log('logout state');
-      }
+      template: '<logout></logout>'
     });
 });

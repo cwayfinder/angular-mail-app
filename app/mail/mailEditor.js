@@ -2,21 +2,26 @@
 
 angular.module('app').component('mailEditor', {
   templateUrl: 'app/mail/mailEditor.html',
-  controller: function(UserService, MailService, ContactsService, $state, $window) {
+  controller: function(ContactsService, MailService, $state, $window) {
     this.mail = {};
 
     this.submit = () => {
-      MailService.sendMail(UserService.getCurrentUser(), this.mail).then(() => {
-        $state.go('^.folder', {folder: 'sent'});
-      });
+      MailService.save(this.mail)
+        .then(() => $state.go('^.folder', {folder: 'sent'}))
+        .catch((error) => console.warn("Error:", error));
     };
 
     this.fakeEmail = () => {
-      ContactsService.generateFake().then(fake => {
-        this.mail.to = fake.email;
-        this.mail.subject = faker.directive('lorem')('%w', 3, 3);
-        this.mail.text = faker.directive('lorem')('%p', 3, 3);
-      });
+      ContactsService.generateFake()
+        .then(contact => ({to: contact.email}))
+        .then(mail => {
+          mail.subject = faker.directive('lorem')('%w', 3, 3);
+          mail.text = faker.directive('lorem')('%p', 3, 3);
+          return mail;
+        })
+        .then(mail => {
+          this.mail = mail;
+        });
     };
 
     // TODO: use a smarter approach instead of $window.history.back()

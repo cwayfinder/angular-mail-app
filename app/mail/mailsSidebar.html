@@ -19,4 +19,9 @@
       <span ng-class="{bold: $ctrl.selectedFolder == 'sent'}">Sent Mails</span>
     </a>
   </li>
+  <li>
+    <a ui-sref="^.folder({folder: 'trash'})">
+      <span ng-class="{bold: $ctrl.selectedFolder == 'trash'}">Trash</span>
+    </a>
+  </li>
 </ul>

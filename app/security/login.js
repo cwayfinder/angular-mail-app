@@ -1,17 +1,15 @@
 angular.module('app').component('login', {
   templateUrl: 'app/security/login.html',
-  bindings: {
-    currentAuth: '='
-  },
-  controller: function(authService, $location) {
-    console.log('currentAuth', this.currentAuth)
-    if (this.currentAuth) {
-      //$location.path('/mailbox');
-    }
+  controller: function(authService, $location, $firebaseObject, firebaseRef) {
 
     this.twitterLogin = () => {
       authService.$authWithOAuthPopup('twitter')
-        .then(() => $location.path('/mailbox/folder/inbox'))
+        .then((authData) => {
+          var user = $firebaseObject(firebaseRef.getUserRef());
+          user.name = authData.twitter.displayName;
+          return user.$save();
+        })
+        .then(() => $location.path('/'))
         .catch(err => this.errorMessage = err.code);
     }
   }
