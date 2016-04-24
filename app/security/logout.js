@@ -1,7 +1,6 @@
 angular.module('app').component('logout', {
-  controller: function(authService, $location) {
-    console.log('logout');
+  controller: function(authService, $location, $state) {
     authService.$unauth();
-    $location.path('/login');
+    $state.go('login');
   }
 });
