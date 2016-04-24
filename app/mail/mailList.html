@@ -12,9 +12,9 @@
     <td>{{$ctrl.collocutor(mail)}}</td>
     <td>{{mail.subject}}</td>
     <td>{{$ctrl.formatDate(mail.timestamp)}}</td>
-    <td>
+    <td ng-if="$ctrl.folder !== 'trash'">
       <button type="button" class="btn btn-default" ng-click="$ctrl.remove(mail, $event)">
-        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
       </button>
     </td>
   </tr>
