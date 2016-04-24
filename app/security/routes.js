@@ -12,7 +12,7 @@ angular.module('app').config(function($stateProvider) {
       url: '/login',
       template: '<login></login>',
       resolve: {
-        currentAuth: function(authService) {
+        currentAuth: function(authService, $location) {
           return authService.$waitForAuth()
             .then(authData => {
               if(authData) {
