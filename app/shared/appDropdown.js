@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app').component('appDropdown', {
-  templateUrl: 'app/common/appDropdown.html',
+  templateUrl: 'app/shared/appDropdown.html',
   bindings: {
     currentApp: '@'
   },
