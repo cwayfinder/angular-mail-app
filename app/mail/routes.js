@@ -7,7 +7,7 @@ var mailboxAsideView = {
 };
 
 
-angular.module('app').config(function($stateProvider) {
+angular.module('app.mailbox').config(function($stateProvider) {
   $stateProvider
 
     .state('app.mailbox', {

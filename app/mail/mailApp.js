@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').component('mailApp', {
+angular.module('app.mailbox').component('mailApp', {
   templateUrl: 'app/mail/mailApp.html',
   bindings: {
     user: '<'

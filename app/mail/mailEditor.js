@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').component('mailEditor', {
+angular.module('app.mailbox').component('mailEditor', {
   templateUrl: 'app/mail/mailEditor.html',
   controller: function(ContactsService, MailService, $state, $window) {
     this.mail = {};

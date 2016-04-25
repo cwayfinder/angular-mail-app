@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').component('mailList', {
+angular.module('app.mailbox').component('mailList', {
   templateUrl: 'app/mail/mailList.html',
   bindings: {
     folder: '@',
