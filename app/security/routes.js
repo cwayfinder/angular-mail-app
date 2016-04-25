@@ -1,4 +1,4 @@
-angular.module('app').run(function($rootScope, $location, $state) {
+angular.module('app.security').run(function($rootScope, $location, $state) {
   $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
     if (error === 'AUTH_REQUIRED') {
       $state.go('login');
@@ -6,7 +6,7 @@ angular.module('app').run(function($rootScope, $location, $state) {
   });
 });
 
-angular.module('app').config(function($stateProvider) {
+angular.module('app.security').config(function($stateProvider) {
   $stateProvider
     .state('login', {
       url: '/login',

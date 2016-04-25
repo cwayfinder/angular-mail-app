@@ -1,4 +1,4 @@
-angular.module('app').component('login', {
+angular.module('app.security').component('login', {
   templateUrl: 'app/security/login.html',
   controller: function(authService, $location, $firebaseObject, firebaseRefs) {
 
