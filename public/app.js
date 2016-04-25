@@ -239,7 +239,7 @@ var app =
 	exports.default = function ($stateProvider) {
 	  $stateProvider.state('login', {
 	    url: '/login',
-	    template: '<login></login>',
+	    template: '<login test-users="$ctrl.testUsers"></login>',
 	    resolve: {
 	      currentAuth: function currentAuth(authService, $location) {
 	        return authService.$waitForAuth().then(function (authData) {
@@ -247,8 +247,15 @@ var app =
 	            $location.path('/');
 	          }
 	        });
+	      },
+	      testUsers: function testUsers(firebaseRefs, $firebaseArray) {
+	        return $firebaseArray(firebaseRefs.parse('users').orderByKey().limitToFirst(3)).$loaded();
 	      }
-	    }
+	    },
+	    controller: function controller(testUsers) {
+	      this.testUsers = testUsers;
+	    },
+	    controllerAs: '$ctrl'
 	  }).state('logout', {
 	    url: '/logout',
 	    template: '<logout></logout>'
@@ -282,8 +289,13 @@ var app =
 	});
 	exports.default = {
 	  templateUrl: 'app/security/login.html',
+	  bindings: {
+	    testUsers: '<'
+	  },
 	  controller: function controller(authService, $location, $firebaseObject, firebaseRefs) {
 	    var _this = this;
+	
+	    console.log('testUsers', this.testUsers);
 	
 	    this.twitterLogin = function () {
 	      authService.$authWithOAuthPopup('twitter').then(function (authData) {
@@ -292,6 +304,23 @@ var app =
 	        var user = $firebaseObject(firebaseRefs.parse('users/:userKey'));
 	        user.name = authData.twitter.displayName;
 	        return user.$save();
+	      }).then(function () {
+	        return $location.path('/');
+	      }).catch(function (err) {
+	        return _this.errorMessage = err.code;
+	      });
+	    };
+	
+	    this.testLogin = function (user) {
+	      console.log('testLogin', user);
+	      authService.$authWithPassword({ email: user.email, password: '123' }).then(function () {
+	        firebaseRefs.setParam('userKey', authService.$getAuth().uid);
+	
+	        var user2 = $firebaseObject(firebaseRefs.parse('users/:userKey'));
+	        user2.avatarUrl = user.avatarUrl;
+	        user2.email = user.email;
+	        user2.name = user.name;
+	        return user2.$save();
 	      }).then(function () {
 	        return $location.path('/');
 	      }).catch(function (err) {

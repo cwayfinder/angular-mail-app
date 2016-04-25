@@ -7,15 +7,18 @@ module.exports = {
   context: __dirname + '/app',
   entry: {
     app: './index'
-    // shared: './shared'
-    // about: './about',
-    // common: ['./common', './welcome']
   },
   output: {
     path: __dirname + '/public',
     filename: "[name].js",
     library: '[name]'
   },
+
+  // watch: NODE_ENV === 'development',
+  //
+  // watchOptions: {
+  //   aggregateTimeout: 100
+  // },
 
   devtool: NODE_ENV === 'development' ? 'source-map' : null,
 

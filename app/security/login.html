@@ -1,5 +1,16 @@
-<h1>Please Log In</h1>
+<div style="text-align: center">
+  <h3>Log in with social networks</h3>
+  <button class="btn btn-primary" ng-click="$ctrl.twitterLogin()">Log In with Twitter</button>
+  <br><br>
 
-<button class="btn btn-primary" ng-click="$ctrl.twitterLogin()">Log In with Twitter</button><br>
+  <h3>Log in as test user</h3>
+  <div class="container">
+    <div class="col-xs-4 well" ng-repeat="user in $ctrl.testUsers">
+      <img class="img-circle" alt="avatar" ng-src="{{user.avatarUrl}}" style="width: 128px;">
+      <h4>{{user.name}}</h4>
+      <button class="btn btn-primary" ng-click="$ctrl.testLogin(user)">Log In</button>
+    </div>
+  </div>
 
-<div class="alert alert-danger" ng-show="$ctrl.errorMessage">{{$ctrl.errorMessage}}</div>
+  <div class="alert alert-danger" ng-show="$ctrl.errorMessage">{{$ctrl.errorMessage}}</div>
+</div>

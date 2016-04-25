@@ -1,7 +1,9 @@
 export default {
   templateUrl: 'app/security/login.html',
-  controller: function(authService, $location, $firebaseObject, firebaseRefs) {
-
+  bindings: {
+    testUsers: '<'
+  },
+  controller: function (authService, $location, $firebaseObject, firebaseRefs) {
     this.twitterLogin = () => {
       authService.$authWithOAuthPopup('twitter')
         .then((authData) => {
@@ -11,6 +13,14 @@ export default {
           user.name = authData.twitter.displayName;
           return user.$save();
         })
+        .then(() => $location.path('/'))
+        .catch(err => this.errorMessage = err.code);
+    };
+
+    this.testLogin = user => {
+      console.log('testLogin', user);
+      authService.$authWithPassword({email: user.email, password: '123'})
+        .then(() => firebaseRefs.setParam('userKey', authService.$getAuth().uid))
         .then(() => $location.path('/'))
         .catch(err => this.errorMessage = err.code);
     }
