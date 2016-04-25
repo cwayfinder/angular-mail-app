@@ -1,4 +1,4 @@
-angular.module('app').service('firebaseRefs', function() {
+angular.module('app.shared').service('firebaseRefs', function() {
 
   const baseParams = {};
 
