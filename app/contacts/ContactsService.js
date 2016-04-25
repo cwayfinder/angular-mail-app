@@ -1,4 +1,4 @@
-angular.module('app').service('ContactsService', function($http, firebaseRefs, $firebaseArray, $firebaseObject) {
+angular.module('app.contacts').service('ContactsService', function($http, firebaseRefs, $firebaseArray, $firebaseObject) {
 
   this.get = function(key) {
     const ref = firebaseRefs.parse('contacts/:userKey/:mailKey', {mailKey: key});

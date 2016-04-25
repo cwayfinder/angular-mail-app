@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').component('contactEditor', {
+angular.module('app.contacts').component('contactEditor', {
   templateUrl: 'app/contacts/contactEditor.html',
   controller: function(ContactsService, $window, $state) {
     this.contact = {};

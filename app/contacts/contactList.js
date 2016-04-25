@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').component('contactList', {
+angular.module('app.contacts').component('contactList', {
   templateUrl: 'app/contacts/contactList.html',
   bindings: {
     contacts: '<'

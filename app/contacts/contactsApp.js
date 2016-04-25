@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('app').component('contactsApp', {
+angular.module('app.contacts').component('contactsApp', {
   templateUrl: 'app/contacts/contactsApp.html'
 });

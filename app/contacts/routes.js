@@ -1,6 +1,6 @@
 
 
-angular.module('app').config(function($stateProvider) {
+angular.module('app.contacts').config(function($stateProvider) {
 
   var asideView = {
     template: '<contacts-sidebar></contacts-sidebar>'
