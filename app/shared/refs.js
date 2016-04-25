@@ -27,6 +27,7 @@ angular.module('app.shared').service('firebaseRefs', function() {
   function resolveParametrisedToken(name, params) {
     let val = params && params[name] ? params[name] : baseParams[name];
     if (!val) {
+      console.log('baseParams', baseParams);
       throw new Error(`Param ${name} is not defined.`);
     }
 

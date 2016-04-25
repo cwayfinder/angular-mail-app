@@ -2,15 +2,13 @@
 
 angular.module('app').component('contactEditor', {
   templateUrl: 'app/contacts/contactEditor.html',
-  bindings: {
-    onSubmit: '&',
-    onCancel: '&'
-  },
-  controller: function(ContactsService) {
+  controller: function(ContactsService, $window, $state) {
     this.contact = {};
 
     this.submit = () => {
-      this.onSubmit({contact: this.contact});
+      ContactsService.save(this.contact)
+        .then(() => $state.go('^.all'))
+        .catch((error) => console.warn(error));
     };
 
     this.fakeContact = () => {
@@ -22,5 +20,8 @@ angular.module('app').component('contactEditor', {
         this.contact.company = faker.directive('company')();
       });
     };
+
+    // TODO: use a smarter approach instead of $window.history.back()
+    this.back = () => $window.history.back();
   }
 });

@@ -1,6 +1,6 @@
 <div class="row well well-sm">
   <div class="btn-toolbar">
-    <button type="button" class="btn btn-default" ng-click="$ctrl.onCancel()">
+    <button type="button" class="btn btn-default" ng-click="$ctrl.back()">
       <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back
     </button>
     <button type="button" class="btn btn-primary" ng-click="$ctrl.fakeContact()">Fake Contact</button>
@@ -33,6 +33,6 @@
     <input type="text" class="form-control" id="company" ng-model="$ctrl.contact.company">
   </div>
 
-  <button type="button" class="btn btn-default" ng-click="$ctrl.onCancel()">Cancel</button>
-  <button type="submit" class="btn btn-primary" ng-click="$ctrl.onSubmit({contact: $ctrl.contact})">Submit</button>
+  <button type="button" class="btn btn-default" ng-click="$ctrl.back()">Cancel</button>
+  <button type="submit" class="btn btn-primary" ng-click="$ctrl.submit()">Submit</button>
 </form>

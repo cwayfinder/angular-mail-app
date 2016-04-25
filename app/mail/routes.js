@@ -1,13 +1,13 @@
-var mailboxAsideView = {
-  template: '<mails-sidebar selected-folder="$ctrl.folder"></mails-sidebar>',
-  controller: function($stateParams) {
-    this.folder = $stateParams.folder;
-  },
-  controllerAs: '$ctrl'
-};
-
-
 angular.module('app.mailbox').config(function($stateProvider) {
+
+  var asideView = {
+    template: '<mails-sidebar selected-folder="$ctrl.folder"></mails-sidebar>',
+    controller: function($stateParams) {
+      this.folder = $stateParams.folder;
+    },
+    controllerAs: '$ctrl'
+  };
+
   $stateProvider
 
     .state('app.mailbox', {
@@ -22,7 +22,7 @@ angular.module('app.mailbox').config(function($stateProvider) {
         main: {
           template: '<mail-editor></mail-editor>'
         },
-        aside: mailboxAsideView
+        aside: asideView
       }
     })
 
@@ -41,7 +41,7 @@ angular.module('app.mailbox').config(function($stateProvider) {
           },
           controllerAs: '$ctrl'
         },
-        aside: mailboxAsideView
+        aside: asideView
       }
     })
 
@@ -61,7 +61,7 @@ angular.module('app.mailbox').config(function($stateProvider) {
           },
           controllerAs: '$ctrl'
         },
-        aside: mailboxAsideView
+        aside: asideView
       }
     });
 });

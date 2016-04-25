@@ -1,23 +1,22 @@
-angular.module('app').service('ContactsService', function($http) {
-  const baseUri = 'https://jsru-ng-mail-app.firebaseio.com/contacts/';
+angular.module('app').service('ContactsService', function($http, firebaseRefs, $firebaseArray, $firebaseObject) {
 
-  this.getAll = function(user) {
-    console.debug(`load contacts for ${user.fullName}`);
-
-    return $http.get(baseUri + '.json')
-      .then(response => normalizeToArray(response.data))
-      .then(contacts => contacts.filter(c => c.ownerId === user.id))
-      .catch(error => console.error(error));
+  this.get = function(key) {
+    const ref = firebaseRefs.parse('contacts/:userKey/:mailKey', {mailKey: key});
+    return $firebaseObject(ref).$loaded();
   };
 
-  this.create = function(contact) {
-    console.debug('create contact', contact);
+  this.list = function() {
+    const ref = firebaseRefs.parse('contacts/:userKey');
+    return $firebaseArray(ref).$loaded();
+  };
 
-    return $http.post(baseUri + '.json', contact)
-      .then(response => {
-        contact.id = response.data.name;
-        return contact;
-      });
+  this.save = function(contact) {
+    return $firebaseArray(firebaseRefs.parse('contacts/:userKey')).$add(contact);
+  };
+
+  this.remove = function(contact) {
+    const ref = firebaseRefs.parse('contacts/:userKey/:contactKey', {contactKey: contact.$id});
+    return $firebaseObject(ref).$remove();
   };
 
   this.generateFake = function() {
@@ -25,12 +24,5 @@ angular.module('app').service('ContactsService', function($http) {
       .then(res => {
         return res.data.results[0];
       });
-  };
-
-  this.remove = function(item) {
-    console.debug('delete contact', item);
-
-    return $http.delete(baseUri + item.id + '.json')
-      .then(response => response.data);
   };
 });

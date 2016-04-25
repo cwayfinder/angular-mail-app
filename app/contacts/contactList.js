@@ -3,14 +3,13 @@
 angular.module('app').component('contactList', {
   templateUrl: 'app/contacts/contactList.html',
   bindings: {
-    contacts: '=',
-    onCreate: '&',
-    onSelect: '&',
-    onRefresh: '&'
+    contacts: '<'
   },
-  controller: function(ContactsService) {
-    this.remove = (contact, index) => {
-      ContactsService.remove(contact).then(() => this.onRefresh());
+  controller: function(ContactsService, $state) {
+    this.remove = (contact) => {
+      ContactsService.remove(contact).then(() => this.refresh());
     };
+
+    this.refresh = () => $state.go($state.current, {}, {reload: $state.current});
   }
 });
