@@ -7,6 +7,7 @@ angular.module('app').component('mailList', {
     mails: '<'
   },
   controller: function(MailService, $state) {
+
     this.collocutor = mail => this.folder === 'sent' ? mail.to : mail.sender.name;
 
     this.formatDate = timestamp => moment(timestamp).fromNow();
