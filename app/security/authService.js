@@ -1,3 +1,3 @@
-angular.module('app').factory('authService', function($firebaseAuth, rootRef) {
-  return $firebaseAuth(rootRef);
+angular.module('app').factory('authService', function($firebaseAuth, firebaseRefs) {
+  return $firebaseAuth(firebaseRefs.root);
 });

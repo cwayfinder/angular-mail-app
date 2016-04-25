@@ -19,7 +19,7 @@ angular.module('app').config(function($stateProvider) {
           return authService.$requireAuth()
             .then(() => {
               firebaseRefs.setParam('userKey', authService.$getAuth().uid);
-              $firebaseObject(firebaseRef.getUserRef()).$loaded()
+              $firebaseObject(firebaseRefs.parse('users/:userKey')).$loaded()
             });
         }
       },
