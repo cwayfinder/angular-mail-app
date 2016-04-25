@@ -18,7 +18,7 @@ angular.module('app').config(function($stateProvider) {
         currentUser: function(authService, $firebaseObject, firebaseRef, firebaseRefs) {
           return authService.$requireAuth()
             .then(() => {
-              firebaseRefs.setParam('userKey', authService.$getAuth().uid)
+              firebaseRefs.setParam('userKey', authService.$getAuth().uid);
               $firebaseObject(firebaseRef.getUserRef()).$loaded()
             });
         }

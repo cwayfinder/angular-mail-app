@@ -21,7 +21,6 @@ module.exports = function(config) {
 
       'utils.js',
       'app.js',
-      'app/UserService.js',
       'app/mail/MailService.js',
 
       'test/app-test.js'
