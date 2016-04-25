@@ -1,11 +1,11 @@
 'use strict';
 
-import routes from './routes';
-
 import './shared';
 import './security';
 import './mail';
 import './contacts';
+
+import routes from './routes';
 
 import appViewport from './appViewport';
 import topBar from './topBar';
