@@ -1,6 +1,6 @@
 angular.module('app').component('login', {
   templateUrl: 'app/security/login.html',
-  controller: function(authService, $location, $firebaseObject, firebaseRef, firebaseRefs) {
+  controller: function(authService, $location, $firebaseObject, firebaseRefs) {
 
     this.twitterLogin = () => {
       authService.$authWithOAuthPopup('twitter')

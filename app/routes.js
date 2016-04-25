@@ -15,7 +15,7 @@ angular.module('app').config(function($stateProvider) {
       url: '/app',
       template: `<app-viewport current-user="$ctrl.currentUser"></app-viewport>`,
       resolve: {
-        currentUser: function(authService, $firebaseObject, firebaseRef, firebaseRefs) {
+        currentUser: function(authService, $firebaseObject, firebaseRefs) {
           return authService.$requireAuth()
             .then(() => {
               firebaseRefs.setParam('userKey', authService.$getAuth().uid);
