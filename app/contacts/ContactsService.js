@@ -1,4 +1,4 @@
-angular.module('app.contacts').service('ContactsService', function($http, firebaseRefs, $firebaseArray, $firebaseObject) {
+export default function($http, firebaseRefs, $firebaseArray, $firebaseObject) {
 
   this.get = function(key) {
     const ref = firebaseRefs.parse('contacts/:userKey/:mailKey', {mailKey: key});
@@ -25,4 +25,4 @@ angular.module('app.contacts').service('ContactsService', function($http, fireba
         return res.data.results[0];
       });
   };
-});
+};

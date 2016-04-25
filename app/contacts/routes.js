@@ -1,6 +1,4 @@
-
-
-angular.module('app.contacts').config(function($stateProvider) {
+export default function($stateProvider) {
 
   var asideView = {
     template: '<contacts-sidebar></contacts-sidebar>'
@@ -42,4 +40,4 @@ angular.module('app.contacts').config(function($stateProvider) {
         aside: asideView
       }
     });
-});
+}

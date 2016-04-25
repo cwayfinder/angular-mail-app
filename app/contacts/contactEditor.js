@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.contacts').component('contactEditor', {
+export default {
   templateUrl: 'app/contacts/contactEditor.html',
   controller: function(ContactsService, $window, $state) {
     this.contact = {};
@@ -12,6 +12,10 @@ angular.module('app.contacts').component('contactEditor', {
     };
 
     this.fakeContact = () => {
+      function capitalize(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+      
       ContactsService.generateFake().then(fake => {
         this.contact.name = capitalize(fake.name.first) + ' ' + capitalize(fake.name.last);
         this.contact.avatarUrl = fake.picture.thumbnail;
@@ -24,4 +28,4 @@ angular.module('app.contacts').component('contactEditor', {
     // TODO: use a smarter approach instead of $window.history.back()
     this.back = () => $window.history.back();
   }
-});
+};

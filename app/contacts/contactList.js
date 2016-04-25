@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.contacts').component('contactList', {
+export default {
   templateUrl: 'app/contacts/contactList.html',
   bindings: {
     contacts: '<'
@@ -12,4 +12,4 @@ angular.module('app.contacts').component('contactList', {
 
     this.refresh = () => $state.go($state.current, {}, {reload: $state.current});
   }
-});
+};

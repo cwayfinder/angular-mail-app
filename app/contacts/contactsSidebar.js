@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.contacts').component('contactsSidebar', {
+export default  {
   templateUrl: 'app/contacts/contactsSidebar.html',
   bindings: {
     contacts: '<'
   }
-});
+};

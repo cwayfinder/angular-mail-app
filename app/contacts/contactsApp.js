@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('app.contacts').component('contactsApp', {
+export default {
   templateUrl: 'app/contacts/contactsApp.html'
-});
+};

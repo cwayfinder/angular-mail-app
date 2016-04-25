@@ -10,7 +10,9 @@ import mailsSidebar from './mailsSidebar';
 
 angular.module('app.mailbox', ['app.shared', 'app.security'])
   .config(routes)
+  
   .service('MailService', MailService)
+  
   .component('mailApp', mailApp)
   .component('mailEditor', mailEditor)
   .component('mailList', mailList)

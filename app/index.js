@@ -5,6 +5,7 @@ import routes from './routes';
 import './shared';
 import './security';
 import './mail';
+import './contacts';
 
 import appViewport from './appViewport';
 import topBar from './topBar';
