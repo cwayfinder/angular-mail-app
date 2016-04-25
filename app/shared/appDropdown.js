@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.shared').component('appDropdown', {
+export default {
   templateUrl: 'app/shared/appDropdown.html',
   bindings: {
     currentApp: '@'
   }
-});
+};

@@ -1,4 +1,4 @@
-angular.module('app.shared').service('firebaseRefs', function() {
+export default function() {
 
   const baseParams = {};
 
@@ -33,4 +33,4 @@ angular.module('app.shared').service('firebaseRefs', function() {
 
     return val;
   }
-});
+};

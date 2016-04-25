@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app').component('topBar', {
+export default {
   templateUrl: 'app/topBar.html',
   bindings: {
     currentUser: '<'
   }
-});
+};

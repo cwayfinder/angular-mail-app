@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app').component('appViewport', {
+export default {
   templateUrl: 'app/appViewport.html',
   bindings: {
     currentUser: '<'
   }
-});
+};
