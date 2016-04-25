@@ -14,11 +14,11 @@ module.exports = {
     library: '[name]'
   },
 
-  // watch: NODE_ENV === 'development',
-  //
-  // watchOptions: {
-  //   aggregateTimeout: 100
-  // },
+  watch: NODE_ENV === 'development',
+
+  watchOptions: {
+    aggregateTimeout: 100
+  },
 
   devtool: NODE_ENV === 'development' ? 'source-map' : null,
 
