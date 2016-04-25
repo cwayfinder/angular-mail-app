@@ -19,8 +19,7 @@ module.exports = function(config) {
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'node_modules/angular-mocks/angular-mocks.js',
 
-      'utils.js',
-      'app.js',
+      'app/index.js',
       'app/mail/MailService.js',
 
       'test/app-test.js'
