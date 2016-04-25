@@ -7,6 +7,10 @@ angular.module('app').service('firebaseRefs', function() {
   };
 
   this.parse = (ref, params) => {
+    if (!this.root) {
+      throw new Error(`Firebase root reference is not defined.`);
+    }
+
     return ref.split('/').reduce(function(res, token) {
       return res.child(resolveToken(token, params));
     }, this.root);
