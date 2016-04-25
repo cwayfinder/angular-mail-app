@@ -1,12 +1,4 @@
-angular.module('app.security').run(function($rootScope, $location, $state) {
-  $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
-    if (error === 'AUTH_REQUIRED') {
-      $state.go('login');
-    }
-  });
-});
-
-angular.module('app.security').config(function($stateProvider) {
+export default function($stateProvider) {
   $stateProvider
     .state('login', {
       url: '/login',
@@ -26,4 +18,4 @@ angular.module('app.security').config(function($stateProvider) {
       url: '/logout',
       template: '<logout></logout>'
     });
-});
+}

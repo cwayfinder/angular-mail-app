@@ -1,4 +1,4 @@
-angular.module('app.security').component('login', {
+export default {
   templateUrl: 'app/security/login.html',
   controller: function(authService, $location, $firebaseObject, firebaseRefs) {
 
@@ -15,4 +15,4 @@ angular.module('app.security').component('login', {
         .catch(err => this.errorMessage = err.code);
     }
   }
-});
+};

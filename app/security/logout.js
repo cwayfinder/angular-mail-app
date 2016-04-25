@@ -1,6 +1,6 @@
-angular.module('app.security').component('logout', {
+export default {
   controller: function(authService, $location, $state) {
     authService.$unauth();
     $state.go('login');
   }
-});
+};
