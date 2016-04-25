@@ -295,8 +295,6 @@ var app =
 	  controller: function controller(authService, $location, $firebaseObject, firebaseRefs) {
 	    var _this = this;
 	
-	    console.log('testUsers', this.testUsers);
-	
 	    this.twitterLogin = function () {
 	      authService.$authWithOAuthPopup('twitter').then(function (authData) {
 	        firebaseRefs.setParam('userKey', authService.$getAuth().uid);
@@ -314,13 +312,7 @@ var app =
 	    this.testLogin = function (user) {
 	      console.log('testLogin', user);
 	      authService.$authWithPassword({ email: user.email, password: '123' }).then(function () {
-	        firebaseRefs.setParam('userKey', authService.$getAuth().uid);
-	
-	        var user2 = $firebaseObject(firebaseRefs.parse('users/:userKey'));
-	        user2.avatarUrl = user.avatarUrl;
-	        user2.email = user.email;
-	        user2.name = user.name;
-	        return user2.$save();
+	        return firebaseRefs.setParam('userKey', authService.$getAuth().uid);
 	      }).then(function () {
 	        return $location.path('/');
 	      }).catch(function (err) {
