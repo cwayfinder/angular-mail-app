@@ -1,4 +1,4 @@
-angular.module('app.mailbox').config(function($stateProvider) {
+export default function($stateProvider) {
 
   var asideView = {
     template: '<mails-sidebar selected-folder="$ctrl.folder"></mails-sidebar>',
@@ -64,4 +64,4 @@ angular.module('app.mailbox').config(function($stateProvider) {
         aside: asideView
       }
     });
-});
+};

@@ -1,4 +1,4 @@
-angular.module('app.mailbox').service('MailService', function(Firebase, firebaseRefs, $firebaseArray, $firebaseObject) {
+export default function(Firebase, firebaseRefs, $firebaseArray, $firebaseObject) {
 
   this.get = function(key) {
     const ref = firebaseRefs.parse('mails/:userKey/:mailKey', {mailKey: key});
@@ -56,4 +56,4 @@ angular.module('app.mailbox').service('MailService', function(Firebase, firebase
       $firebaseObject(ref).$remove()
     });
   }
-});
+};

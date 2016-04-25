@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.mailbox').component('mailEditor', {
+export default {
   templateUrl: 'app/mail/mailEditor.html',
   controller: function(ContactsService, MailService, $state, $window) {
     this.mail = {};
@@ -27,4 +27,4 @@ angular.module('app.mailbox').component('mailEditor', {
     // TODO: use a smarter approach instead of $window.history.back()
     this.back = () => $window.history.back();
   }
-});
+};

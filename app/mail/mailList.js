@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.mailbox').component('mailList', {
+export default {
   templateUrl: 'app/mail/mailList.html',
   bindings: {
     folder: '@',
@@ -19,4 +19,4 @@ angular.module('app.mailbox').component('mailList', {
 
     this.refresh = () => $state.go($state.current, {folder: this.folder}, {reload: $state.current});
   }
-});
+};

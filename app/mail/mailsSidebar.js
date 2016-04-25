@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('app.mailbox').component('mailsSidebar', {
+export default {
   templateUrl: 'app/mail/mailsSidebar.html',
   bindings: {
     selectedFolder: '<'
   }
-});
+};

@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('app.mailbox').component('mailApp', {
+export default {
   templateUrl: 'app/mail/mailApp.html'
-});
+};
